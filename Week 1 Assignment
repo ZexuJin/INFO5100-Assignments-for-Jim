@@ -1,0 +1,143 @@
+
+/* INFO5100 Week1 Assignment */
+/* Name: Zexu(Jim) Jin */
+/* Git:ZexuJin */
+/* Email:jin.zex@husky.neu.edu */
+
+
+/* Online Courses Registration Platform */
+
+Student Can:
+1. Login
+2. Search courses based on names/class numbers/departments...
+3. Add class
+4. Drop class
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: Student{ 
+       string name;
+       double studentNumber;
+       double dateofBirth;
+       string accountName;
+       string password;
+       int credits;
+       string courses[];
+}
+
+Behavior: loginSystem(accountName, password){
+        LoginSystem = courseRegistrationSystem.login(accountName, password)
+        //output login results: Login successfully./Account doesn't exist.
+}
+
+Behavior: searchCourses(searchKeywords){
+        List<courses> courses = courseRegistrationSystem.search(searchKeywords)
+        //output search results: a list of courses.
+}
+
+Behavior: registCourses(){
+        RegistedCourseDetails = courseRegistrationSystem.registCourse(studentNumber, courseName, maxCredits, credits)
+        //output registration results: instructions.
+}
+
+Behavior: dropClass(){
+        DropClassDetails = courseRegistrationSystem.dropCourse(studentNumber, courseName, minCredits, credits)
+        //output drop results: instructions.
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: Department{
+       string departmentName[];
+       string courseList[];
+}
+
+Behavior: studentDepartment(studentNumber){
+          //Retrieve the department name and other information from the students database.
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: Courses{
+       string courseName;
+       double courseNumber;
+       int courseCredits;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: CourseRegistrationSystem
+
+Behavior: login(accountName, password){
+        //call to traverse all user names in the system and match input password with the password stored in the database.
+        if(1){
+                println("Login successfully.");
+                else
+                       println("Account doesn't exist.");
+        }
+}
+
+Behavior: SearchCourses(searchKeywords){
+        for department in Department:
+                for course in department.courseList[]:
+                        if (searchKeywords = course)
+                                println(course);
+        //call to traverse every course in every department, if the course match the search keyword, output the course information.
+}
+
+Behavior: RegistCourse(studentNumber, courseName, maxCredits, minCredits, credits){
+        //to see which department student belongs to and his/her max/min credits requirements.
+        double studentNumber;
+        department = Department.studentDepartment(studentNumber);
+        int maxcredits = Credits.maxCredits(department);
+        int mincredits = Credits.minCredits(department);
+        
+        //to see if students have extra credits for course registration, if not, exit immediately.
+        if (credits >= maxcredits){
+                return 0;
+                prinln("You're not eligible to add classes.");
+                else
+                        //to see if the course is within his/her mandatory courses list (eligible to add).
+                        List<mandatoryCourses> courses = department.checkMandatoryCourses(studentNumber);
+                        if (course.courseName in courses){
+                                credits = credits + course.credits;
+                                Student.courses[num+1] = course;
+                                println("Congrets! You've successfully added the course!");
+                                else
+                                        //to see if the course is within his/her selective courses list (eligible to add).
+                                        List<electiveCourses> courses = department.checkElectiveCourses(studentNumber);
+                                        if (course.courseName in courses){
+                                                credits = credits + course.credits;
+                                                Student.courses[num+1] = course;
+                                                println("Congrets! You've successfully added the course!");
+                                        }
+                        }
+        }
+}
+Behavior: DropCourse(studentNumber, courseName, maxCredits, minCredits, credits){
+        //to see which department student belongs to and his/her max/min credits requirements.
+        int studentNumber;
+        department = Department.studentDepartment(studentNumber);
+        int maxcredits = Credits.maxCredits(department);
+        int mincredits = Credits.minCredits(department);
+        
+        //to see if drop the course will make the student's credits below minimum requirements.
+        int credits1 = credits - course.credits;
+        if(credits1 < mincredits){
+                return 0;
+                println("Sorry, you'll be blow your minimum credits requirements, you can't drop this class.")
+                else
+                        //to see if the course is within his/her mandatory courses list (if so, dropping is forbidden).
+                        List<mandatoryCourses> courses = department.checkMandatoryCourses(studentNumber);
+                        if (course.courseName in courses){
+                                return 0;
+                                println("Sorry, you can't drop mandatory courses.");
+                                else
+                                        //Courses can be dropped.
+                                        return 1;
+                                        credits = credits - course.credits;
+                                        println("Congrets! You've successfully dropped the course.");
+                         }
+         }
+}
+    
