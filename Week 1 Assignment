@@ -110,10 +110,15 @@ Behavior: RegistCourse(studentNumber, courseName, maxCredits, minCredits, credit
                                                 credits = credits + course.credits;
                                                 Student.courses[num+1] = course;
                                                 println("Congrets! You've successfully added the course!");
+                                                else
+                                                        //the course cannot be registered by the student.
+                                                        return 0;
+                                                        println("Sorry, it's not on your list!");
                                         }
                         }
         }
 }
+
 Behavior: DropCourse(studentNumber, courseName, maxCredits, minCredits, credits){
         //to see which department student belongs to and his/her max/min credits requirements.
         int studentNumber;
