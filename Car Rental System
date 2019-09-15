@@ -1,0 +1,102 @@
+/* Car Rental System */
+
+Rentee can:
+1. Login
+2. Search cars based on prices/brands/models...
+3. Rent cars
+4. Cancel rental
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: Rentee
+State: name, driverLicense, phoneNumber, accountName, passwords, creditCardInfos
+
+Behavior: regist(accountName, passwords){
+        Regist = carsRentalSystem.regist(accountName, passwords);
+}
+
+Behavior: loginSystem(accountName, passwords){
+        LoginSystem = carsRentalSystem.login(accountName, password);
+        //output login results: Login successfully./Account doesn't exist.
+}
+
+Behavior: carSearch(searchKeywords){
+        List<cars> cars = carsRentalSystem.search(searchKeywords);
+        //A list of cars/options.
+}
+ 
+Behavior: carRent(){
+        CarRentDetails = carsRentalSystem.carRental(itemNumber, accountName, passwords, creditCardInfos)
+}
+
+Behavior: cancelCar(){
+        CarCancelDetails = carsRentalSystem.carCancel(orderNumber, itemNumber, creditCardInfos)
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: RentorCompany
+State: listofCars[]
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: CarsRentalSystem
+
+Behavior: regist(accountName, passwords){
+        //Call to regist. & Add customer info into database.
+}
+
+Behavior: login(accountName, passwords){
+        if(true){
+                println("Login successfully.");
+                else
+                       println("Account doesn't exist.");
+        }
+}
+
+Behavior: search(keywords, maxPrice, minPrice, dateofRental){
+        for car in RentorCompany.listofCars[] {
+                byte i =0;
+                String[] ListofCarsAvailable = new String[500];
+                Boolean isAvailable = true;
+                if(car.price >= minPrice && car.price <= maxPrice && isAvailable){
+                     ListofCarsAvailable[i] = car;
+                     i++;
+                }
+                for car in ListofCarsAvailable[] {
+                        if car = keywords {
+                            println(car+" is available.");
+                            println(car.info);
+                        }
+                }
+         }
+}
+
+Behavior: carRental(itemNumber, accountName, passwords, creditCardInfos, startDate, returnDate){
+        int numberofDate = returnDate - startDate;
+        double priceperDay = car.price(itemNumber);
+        double priceTotal = priceperDay * numberofDate;
+        
+        if(Rentee.creditCardInfos){
+                //Make payments according to credit card infos.
+                println("You've successfully rented the car! Have a fun trip!");
+                car.isAbailable = false;
+                else
+                        //Cannot finish payment due to credit card problem...
+                        println("There are some mistakes in your credit infos, plz check out!");
+}
+
+Behavior: carCancel(orderNumber, itemNumber, creditCardInfos){
+        //Refunds to credit card.
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: creditCardsSystem
+State: holderName, cardNumber
+
+Behavior: creditCardInfos(holderName, cardNumber, passwords){
+        //check out if card is usable.
+        Boolean ifUsable(holderName, cardNumber, passwords);
+        return true;
+}
