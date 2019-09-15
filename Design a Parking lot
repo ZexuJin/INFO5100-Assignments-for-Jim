@@ -1,0 +1,85 @@
+/* Design a Parking lot */
+
+Parking lot can:
+1. add different vehicles 
+2. Assign different parking areas to different vehicles
+3. Charge fees
+4. Give parking card
+5. Retrieve parking card
+
+Class: Vehicles
+States: models
+Behavior vehicles(){
+        //define every models of vehicles
+}
+
+Behabior parkingRate(model){
+         //set parking rate accourding to different car model.
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class parkingLot
+State: sections, parkingRate
+
+Behavior: addVehicle(model, carNumber){
+          //add Vehicle model and other info into its database
+}
+
+Behavior: assignParkingArea(model){
+          section = parkingLot.section(model);
+          List<section.parkingLots> = parkingLots;
+          //find an available parking space in a specific section.
+          for (int i = 0; i < parkingLots.size(); i++) {
+                    Boolean isAvailable = true;
+                    break;}
+          Boolean parkingLots[i] = false;
+          return 1;
+}
+
+Behavior: giveParkingCard(day, hour){
+          //get info about the beginning about parking time
+}
+
+Behavior: retrieveParkingCard(day, hour){
+         //get info about the ending about parking time
+         int days = retrieveParkingCard.day - giveParkingCard.day;
+         int hours =  retrieveParkingCard.hour - giveParkingCard.hour;
+         int totalHours = days * 24 + hours;
+         return 1;
+}
+
+Behavior: chargeMoney(hours, model){
+          //Depending on its section, calculate the total fees.
+          int hours = retrieveParkingCard.totalHours;
+          parkingRate = vehicle.parkingRate(model);
+          double totalMoney = hours * parkingRate;
+          return totalMoney;
+          if (methodofPayment){
+               //using credit card;
+               get creditCardInfos;
+               else
+                   //using cash.
+          }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: creditCardsSystem
+State: holderName, cardNumber
+
+Behavior: creditCardInfos(holderName, cardNumber, passwords){
+        //check out if card is usable.
+        Boolean ifUsable(holderName, cardNumber, passwords);
+        return true;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: driver
+States: driverLicense, paymentMethod
+
+Behavior: methodofPayment(){
+          //to see what kind of payment the driver is using;
+          boolean isCreditCard = true;
+}
