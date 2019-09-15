@@ -1,0 +1,67 @@
+/* Traffic Controller System for a Junction */
+
+System can do:
+1. Change colors of the traffic lights
+2. Monitor the traffic flow of different times during a day.
+3. Manage traffic flows
+..
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class Road
+States: directions, trafficFlow
+
+Behavior: monitorTrafficFlow(){
+          //monitor traffic flow of different direction,
+          including cars from:
+          north to south; south to north;
+          north to west;  north to east;
+          south to west;  south to east:
+          west to north;  west to south;
+          east to south;  east to north;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: trafficLightsSignal
+States: redColor, greenColor, yellowColor;
+
+Behavior: colorLength(color){
+          //define how many seconds a specific color needs to be
+          int time.red = 60;
+          int time.green = 45;
+          int time.yellow = 8;
+}
+
+Behavior: sidewalkLength(){
+          //define how many seconds sidewalk needs to be.
+          //reminder: sidewalk can only be applied for straight route.
+          int time.sidewalk = 35;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: trafficController
+
+Behavior: oppositeTrafficLightsControl(){
+          //Make sure that the traffic light shows the same signals in opposite direction.
+          String[] ListofDirections = new String[12]
+          ListofDirections[] = ['S2E', 'S2W', 'E2N', 'E2S', 'N2S', 'S2N', 'N2W', 'N2E', 'E2W', 'W2N', 'W2S', 'W2E']
+          for color in color{
+              S2E.color = E2S.color;
+              S2W.color = W2S.color;
+              E2N.color = N2E.color;
+              N2S.color = S2N.color;
+              S2N.color = N2S.color;
+              N2W.color = W2N.color}                 
+}
+
+Behavior: sidewalkLightControl(){
+          //The sidewalk light changes only when the buttons are pressed, and it begins 5s after main traffic green light, 
+            ends 5s earlier than main traffic green light.
+          if(color != green)
+              //If the color is not green, cannot go through.
+              break;
+              else
+                //The sidewalk light operate as mentioned before.              
+}
