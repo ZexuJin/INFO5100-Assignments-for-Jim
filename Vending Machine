@@ -1,0 +1,96 @@
+/* Vending Machine */
+
+Buyer can:
+1. Select items.
+2. Place moneys.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: User
+States: moneyInTotal, creditCardInfo, intendItem
+
+Behavior: itemSelect(itemNumber){
+          //to see if item is still available 
+          itemAvailable = VendingMachine.itemAvailable(itemNumber);
+          if (itemAvailable = true){
+             return true;
+             println("This item is good to go!");
+             item.itemAmount--;
+          }
+             return flase;
+             println("The item is currently unavailable.")
+}
+
+Behavior: makePayment(itemNumber, addedMoney){
+          price = item.price(itemNumber);
+          //When the money added is less than the price, remind customer to add more money, otherwise give them the changes back.
+          double addedMoney; 
+          if (addedMoney < price) {
+             println("please add "+(price - addedMoney)+" more money for purchase.");
+             else if (addedMoney > price){
+                     giveChanges = VendingMachine.giveChanges(itemNumber, addedMoney,,,,);                  
+             }
+          }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Class: VendingMachine
+States: priceofItem, itemAvailability, numberofDollars, numberofQuaters, numberofDime, numberofNickel, numberofPenny
+
+Behavior: boolean checkAvaliability(itemNumber){
+          //to see if there's still any item left.
+          if (int item.itemAmount != 0)
+          return true;
+}
+
+Behavior: giveChanges(itemNumber, addedMoney, numberofDollars, numberofQuaters, numberofDimes, numberofNickels, numberofPennies){
+          double price = item.price(itemNumber);
+          //If the money added is minus or equal to the price, no need for changes;
+          if (addedMoney <= price)
+             break;
+          else
+             {double changesA = addedMoney - price;
+             changes = changesA * 100;
+             numberofDollarChanges = changes / 100;
+             numberofDollars = numberofDollars - numberofDollarChanges;
+             if (numberofDollars < 0){
+                 breaks;
+                 println("Not enough changes to make the deal.");
+                 else
+                    {changes = changes - numberofDollarChanges * 100;
+                     numberofquaterChanges = changes / 25;
+                     numberofQuaters = numberofQuaters - numberofquaterChanges;
+                     if (numberofQuaters < 0){
+                        breaks;
+                        println("Not enough changes to make the deal.");
+                        else
+                           {changes = changes - numberofQuaterChanges * 25;
+                           numberofDimeChanges = changes / 10;
+                           numberofDimes = numberofDimes - numberofDimeChanges;
+                           if (numberofDimes < 0){
+                              break;
+                              println("Not enough changes to make the deal.");
+                              else
+                                 {changes = changes - numberofDimeChanges * 10;
+                                  numberofNickelChanges = changes / 5;
+                                  numberofNickels = numberofNickels - numberofNickelChanges;
+                                  if (numberofNickels < 0){
+                                      breaks;
+                                      println("Not enough changes to make the deal.");
+                                      else
+                                         {changes = changes - numberofNickelChanges * 5;
+                                          numberofPennyChanges = changes;
+                                          numberofPennies = numberofPennies - numberofPennyChanges;
+                                          if (numberofPennies < 0){
+                                              breaks;
+                                              println("Not enough changes to make the deal.");
+                                              else
+                                                 return 1;
+                                              }}}}}}}}}
+
+}
+
+Behavior manageItems(){
+         //manage the number of items, when bought, the number minus 1.
+}
