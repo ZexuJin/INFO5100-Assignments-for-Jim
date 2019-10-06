@@ -21,15 +21,15 @@ public class shape {
         this.name = name;
     }
 
-    public  void draw(){
+    public void draw(){
         System.out.println("Drawing shape");
     }
 
-    public  void getArea(){
+    public void getArea(){
         System.out.println("It's not a valid shape!");
     }
 
-    public  void getPerimeter(){
+    public void getPerimeter(){
         System.out.println("It's not a valid shape!");
     }
 }
